@@ -1,0 +1,33 @@
+{
+  "name": "serveur-basique",
+  "version": "1.0.0",
+  "description": "Creation du serveur basique pour la gestion de stock avec mongodb ",
+  "keywords": [
+    "[express",
+    "mongoose",
+    "nodemon",
+    "nodejs",
+    "rest",
+    "crud",
+    "backend",
+    "products",
+    "server",
+    "mongodb",
+    "API]"
+  ],
+  "homepage": "https://github.com/hadjehaouamahamatissa/Serveur-Basique#readme",
+  "bugs": {
+    "url": "https://github.com/hadjehaouamahamatissa/Serveur-Basique/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hadjehaouamahamatissa/Serveur-Basique.git"
+  },
+  "license": "ISC",
+  "author": "\"Hadje Haoua Mahamat Issa <hadjehaouamahamatissa@gmail.com>",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "\"scripts\": {"
+  }
+}
