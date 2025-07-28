@@ -1,0 +1,40 @@
+GET  http://localhost:3000/products/
+
+
+###
+GET http://localhost:3000/products/68873dd79d77a8b664b5151d
+
+
+###
+POST http://localhost:3000/products/
+Content-Type: application/json
+
+{ 
+    "productName": "PC Thinkpad", 
+    "price": 450, 
+    "stockStatus": "petite stock" 
+}
+
+###
+PATCH http://localhost:3000/products/68873dd79d77a8b664b5151d/en stock
+Content-Type: application/json
+
+
+{ 
+    "productName": "PC Apple", 
+    "price": 450, 
+   "stockStatus": "petite stock" 
+}
+
+### 
+PATCH http://localhost:3000/products/6887415fd13e2f8e895c472a
+
+{ 
+    "productName": "PC Lenovo", 
+    "price": 450, 
+    "stockStatus": "en stock" 
+}
+
+
+###
+DELETE  http://localhost:3000/products/6887415fd13e2f8e895c472a

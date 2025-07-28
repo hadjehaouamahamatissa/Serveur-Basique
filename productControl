@@ -1,0 +1,79 @@
+const Product = require("./productModel");
+
+// 4
+const getAllProducts = async (req, res) => {
+  const products = await Product.find();
+  res.json(products);
+};
+
+// 5
+const getProductById = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    product ? res.json(product) : res.status(404).json({ error: "Produit introuvable" });
+  } catch (err) {
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+};
+
+// 6
+const createProduct = async (req, res) => {
+  const product = req.body;
+  console.log(product);
+  
+  try {
+    const newProduct = new Product(product);
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(400).json({ message: "Produit ajouter avec succe" });
+  }
+};
+
+// 7
+const updateProduct = async (req, res) => {
+  const updates = { ...req.body };
+  delete updates.stockStatus; // exclure le status du stock
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
+    updated ? res.json(updated) : res.status(404).json({ error: "Produit introuvable" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur de mise à jour" });
+  }
+};
+
+// 8
+const updateStockStatus = async (req, res) => {
+  const validStatus = ["en stock", "petite stock", "pas en stock"];
+  const status = req.params.status;
+  if (!validStatus.includes(status)) {
+    return res.status(400).json({ error: "Status invalide" });
+  }
+
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, { stockStatus: status }, { new: true });
+    updated ? res.json(updated) : res.status(404).json({ error: "Produit introuvable" });
+  } catch (err) {
+    res.status(400).json({ error: "Erreur de mise à jour du stock" });
+  }
+};
+
+// 9
+const deleteProduct = async (req, res) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+    deleted ? res.json({ message: "Produit supprimé" }) : res.status(404).json({ error: "Produit introuvable" });
+  } catch (err) {
+    res.status(500).json({ error: "Erreur lors de la suppression" });
+  }
+};
+
+module.exports = {
+  createProduct,
+  getAllProducts,
+  deleteProduct,
+  getProductById,
+  updateProduct,
+  updateStockStatus
+
+};

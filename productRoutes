@@ -1,0 +1,28 @@
+const express = require('express');
+const router = express.Router();
+
+const productControl = require("./productControl");
+
+
+// router.get("/products", (req, res) => {
+//     res.send('voici la liste de produits')
+// })
+// 4. Recuperer tous les produits
+router.get("/", productControl.getAllProducts);
+
+// 5. Recuperer un produit par son Id
+router.get("/:id", productControl.getProductById);
+
+// 6. Ajouter un nouveau produit 
+router.post("/", productControl.createProduct);
+
+// 7. Update un produit (sauf le statusStock)
+router.patch("/:id", productControl.updateProduct); pr
+
+// 8. Update uniquement le statusStock
+router.patch("/:id/:status", productControl.updateStockStatus);
+
+// 9. Delete un produit 
+router.delete("/:id", productControl.deleteProduct);
+
+module.exports = router;
